@@ -1,0 +1,219 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark: #002a33;
+  --gray: #6b7577;
+  --light: #eff5f7;
+  --light-transparent: rgba(237, 248, 249, 0.752);
+  --light-gradient: linear-gradient(
+    180deg,
+    rgba(18, 90, 166, 0.4) 0%,
+    rgba(198, 212, 197, 0.15) 100%
+  );
+  --transition: all 200ms ease-in-out;
+  --nav-height: 4rem;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--dark);
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+.mainNav {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding: 1rem 2rem;
+  transition: var(--transition);
+}
+.mainNav .navList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+}
+.mainNav .navLink {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.mainNav .navLink:link, .mainNav .navLink:visited, .mainNav .navLink:active {
+  color: var(--light);
+  transition: var(--transition);
+}
+.mainNav.applyBackground {
+  background-color: var(--light-transparent);
+  box-shadow: 0px 3px 2px rgba(10, 15, 54, 0.1);
+}
+.mainNav.applyBackground .navLink:link, .mainNav.applyBackground .navLink:visited, .mainNav.applyBackground .navLink:active {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.hero {
+  background-image: url("/header.3dc29cd7.jpg");
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: var(--light);
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--light-gradient);
+  z-index: 0;
+}
+.hero__desc {
+  position: relative;
+  z-index: 1;
+}
+.hero__desc h1 {
+  font-size: 3.5rem;
+}
+.hero__desc p {
+  font-size: 1.5rem;
+}
+.hero__arrow {
+  position: absolute;
+  bottom: 5px;
+  z-index: 1;
+}
+.hero__arrow:link, .hero__arrow:visited, .hero__arrow:active {
+  color: var(--light);
+}
+.hero__arrow:hover, .hero__arrow:focus {
+  outline: none;
+  transition: var(--transition);
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  25%, 75% {
+    transform: translateY(-10%) scale(1.2);
+  }
+  0%, 50% {
+    transform: translateY(0%) scale(1.2);
+  }
+}
+h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 2rem 1.5rem;
+}
+
+input {
+  font-family: inherit;
+  font-size: inherit;
+  display: block;
+  width: calc(100% - 4rem);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-bottom: 3px solid var(--gray);
+}
+input:focus {
+  outline: none;
+  border-bottom: 3px solid var(--dark);
+}
+input:focus::placeholder {
+  color: var(--dark);
+}
+
+.blog-post {
+  display: grid;
+  place-items: center;
+  padding: 2.5rem 3rem;
+  max-width: 1000px;
+  margin: auto;
+}
+.blog-post .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 2rem;
+}
+.blog-post .card {
+  display: grid;
+  align-content: space-between;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.blog-post .card__desc {
+  opacity: 0;
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+.blog-post .card__image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transition: var(--transition);
+}
+.blog-post .card .card__meta {
+  background: var(--light-transparent);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+.blog-post .card .card__meta--title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+}
+.blog-post .card .card__meta--taglist {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.5rem;
+}
+.blog-post .card .card__meta--taglist-item {
+  padding: 0.5rem 0.9rem;
+  background-color: var(--dark);
+  color: var(--light);
+  text-decoration: none;
+}
+.blog-post .card:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: var(--light-transparent);
+  z-index: -1;
+}
+.blog-post .card:hover .card__desc {
+  opacity: 1;
+}
+.blog-post .card:hover .card__image {
+  transform: scale(1.2);
+}
+.blog-post .card:hover .card__meta {
+  background-color: transparent;
+}
+
+/*# sourceMappingURL=/main.77bb5cfd.css.map */
