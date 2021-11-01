@@ -118,8 +118,33 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/app.js":[function(require,module,exports) {
-console.log('hello');
-console.log('hello again');
+var header = document.querySelector('.hero');
+var mainNav = document.querySelector('.mainNav');
+var input = document.querySelector('#blogSearch'); // Intersection observer
+//3 Check if intersetion is not true add a (applyBackground class) 
+
+var navObsCallback = function navObsCallback(e) {
+  !e[0].isIntersecting ? mainNav.classList.add('applyBackground') : mainNav.classList.remove('applyBackground');
+}; // 2 define options: treshold => is mean how much of it has to be off the page or on the page for you to consider inetesecting
+// threshold: 0.9 is mean only o.9 from 1 is to be considere no longer ukrtsa intesecting
+
+
+var navObsOptions = {
+  threshold: 0.9
+}; // 1. define new inersection with freenamed parameteras
+
+var navObs = new IntersectionObserver(navObsCallback, navObsOptions);
+navObs.observe(header); // Filter 
+
+input.addEventListener('keyup', addFilter);
+
+function addFilter() {
+  var newSearch = input.value.toLowerCase();
+  console.log(newSearch);
+  var posts = document.querySelectorAll('.card').forEach(function (item) {
+    item.innerText.toLowerCase().indexOf(newSearch) > -1 ? item.style.display = '' : item.style.display = 'none';
+  });
+}
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -148,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53292" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49745" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
